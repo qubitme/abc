@@ -1,0 +1,4 @@
+{
+  "eslint.validate": ["json"],
+  "conventionalCommits.scopes": ["generator:application"]
+}
