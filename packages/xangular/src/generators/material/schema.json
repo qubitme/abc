@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "cli": "nx",
+  "$id": "QangularAddMaterialGenerator",
+  "title": "Qangular Add Material Generator",
+  "description": "Sets up Material in target application.",
+  "type": "object",
+  "properties": {
+    "applicationName": {
+      "type": "string",
+      "description": "Target application name of the Add Material generator.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "In which application would you like to set up Angular Material?"
+    }
+  },
+  "required": ["applicationName"],
+  "additionalProperties": false
+}

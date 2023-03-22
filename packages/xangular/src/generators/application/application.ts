@@ -1,11 +1,9 @@
 import { angularInitGenerator, applicationGenerator } from '@nrwl/angular/generators';
 import { Schema as AngularApplicationOptions } from '@nrwl/angular/src/generators/application/schema';
 import { Schema as AngularInitOptions } from '@nrwl/angular/src/generators/init/schema';
-import { addDependenciesToPackageJson, ensurePackage, formatFiles, installPackagesTask, names, Tree } from '@nrwl/devkit';
-import { wrapAngularDevkitSchematic } from '@nrwl/devkit/ngcli-adapter';
+import { addDependenciesToPackageJson, formatFiles, names, Tree } from '@nrwl/devkit';
 import * as VERSIONS from '../../utils/versions';
-import { ApplicationGeneratorSchema as ApplicationGeneratorOptions, NgAddOptions, NormalizedOptions } from './schema';
-
+import { ApplicationGeneratorSchema as ApplicationGeneratorOptions, NormalizedOptions } from './schema';
 
 
 function normalizeOptions(tree: Tree, options: ApplicationGeneratorOptions): NormalizedOptions {
@@ -44,17 +42,6 @@ export default async function (tree: Tree, options: ApplicationGeneratorOptions)
     '@angular/material': VERSIONS.ANGULAR_MATERIAL,
     '@angular/cdk': VERSIONS.ANGULAR_CDK,
   }, {});
-
-  // await installPackagesTask(tree);
-
-  ensurePackage('@angular/material', VERSIONS.ANGULAR_MATERIAL);
-  ensurePackage('@angular/cdk', VERSIONS.ANGULAR_CDK);
-
-  const ngAddMaterialGenerator = wrapAngularDevkitSchematic('@angular/material', 'ng-add');
-
-  const ngAddOptions: NgAddOptions = { project: appName, animations: 'enabled', theme: 'indigo-pink', typography: true };
-
-  await ngAddMaterialGenerator(tree, ngAddOptions);
 
   await formatFiles(tree);
 
